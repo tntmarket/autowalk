@@ -11,7 +11,9 @@ angle_bot = interp1(data(:,3)/1000, data(:,4), ts);
 angle_knee = angle_top-angle_bot;
 ts = ts - t0;
 
-start = 33; stop = 53;
+stop = 53;
+window = 20;
+start = stop-window;
 ts_slice = ts(start:stop);
 angle_knee_slice = angle_knee(start:stop);
 
@@ -24,7 +26,6 @@ plot(predicted);
 legend('everything', 'slice', 'predicted');
 xlim([0 tend-t0]);
 
-window = 20;
 forecast = 0.2;
 predictions = zeros(length(ts),1);
 for i = (window+1):length(ts)
